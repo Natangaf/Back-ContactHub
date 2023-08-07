@@ -27,49 +27,58 @@ Todas as respostas serão retornadas no formato JSON.
 
 **Exemplos**
 
-```
+
 // Cria um novo usuário
+```
 POST /users
 {
   "name": "John Doe",
   "email": "johndoe@example.com",
   "phone": "123-456-7890"
 }
-
+```
 // Atualiza um usuário existente
+```
 PUT /users/{id}
 {
   "name": "Jane Doe",
   "email": "janedoe@example.com",
   "phone": "987-654-3210"
 }
-
+```
 // Exclui um usuário existente
+```
 DELETE /users/{id}
-
+```
 // Lista todos os usuários
+```
 GET /users
-
+```
 // Lista todos os contatos
+```
 GET /contacts
-
+```
 // Cria um novo contato
+```
 POST /contacts
 {
   "name": "John Doe",
   "email": "johndoe@example.com",
   "phone": "123-456-7890"
 }
+```
 
 // Atualiza um contato existente
+```
 PUT /contacts/{id}
 {
   "name": "Jane Doe",
   "email": "janedoe@example.com",
   "phone": "987-654-3210"
 }
-
+```
 // Exclui um contato existente
+```
 DELETE /contacts/{id}
 ```
 
