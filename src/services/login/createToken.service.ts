@@ -5,7 +5,6 @@ import { AppError } from "../../errors/AppError";
 import {
   TLoggedResponse,
   TLoginRequest,
-  TLoginResponse,
 } from "../../interfaces/login/login.interface";
 import jwt from "jsonwebtoken";
 import "dotenv/config";
