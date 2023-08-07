@@ -15,7 +15,6 @@ const createUserController = async (
 };
 
 const listUserController = async (
-  req: Request,
   res: Response
 ): Promise<Response<TUserResponse[]>> => {
   const user = await listUserService(res.locals.userId);
