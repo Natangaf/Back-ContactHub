@@ -1,103 +1,207 @@
-Claro, aqui está a documentação da API em texto de um README:
+# Documentação da ContactHub
 
-**Documentação da API**
+**Para começar, utilize os seguintes comandos:**
 
-Esta API fornece uma maneira de interagir com um banco de dados de usuários e contatos.
+- Instalar todas as dependências: `npm`
+- Executar as migrações: `npm typeorm migration:run -d src/data-source.ts`
+- Iniciar o servidor: `npm run dev`
 
-**Endpoints**
+Bem-vindo à documentação da API! Este guia fornece uma visão geral dos endpoints disponíveis, suas funcionalidades, parâmetros necessários e respostas esperadas.
 
-* Usuários
-    * `GET /users`: Lista todos os usuários.
-    * `POST /users`: Cria um novo usuário.
-    * `PUT /users/{id}`: Atualiza um usuário existente.
-    * `DELETE /users/{id}`: Exclui um usuário existente.
-* Contatos
-    * `GET /contacts`: Lista todos os contatos.
-    * `POST /contacts`: Cria um novo contato.
-    * `PUT /contacts/{id}`: Atualiza um contato existente.
-    * `DELETE /contacts/{id}`: Exclui um contato existente.
+## Autenticação
 
-**Requisições**
+A maioria dos endpoints da API requer autenticação usando um bearer token. Para autenticar, obtenha um token fazendo uma requisição POST para o endpoint `/login` com credenciais válidas. Inclua o token no cabeçalho `Authorization` para requisições subsequentes a endpoints autenticados.
 
-Todas as requisições devem ser feitas no formato JSON.
+# Usuários
 
-**Respostas**
+## Criar Usuário
 
-Todas as respostas serão retornadas no formato JSON.
+**Requisição:**
 
-**Exemplos**
-
-
-// Cria um novo usuário
-```
 POST /users
+Authorization: Required
+Content-Type: application/json
+
+```
 {
   "name": "John Doe",
   "email": "johndoe@example.com",
-  "phone": "123-456-7890"
+  "password": "123456",
+  "phone": "2121222"
 }
 ```
-// Atualiza um usuário existente
+
+**Resposta:**
+json
+
 ```
-PUT /users/{id}
 {
-  "name": "Jane Doe",
-  "email": "janedoe@example.com",
-  "phone": "987-654-3210"
+"id": "user_id",
+"name": "John Doe",
+"email": "johndoe@example.com"
+"phone": "2121222",
+"createdAt: DATE"
 }
 ```
-// Exclui um usuário existente
+
+## Update User
+
+**Requisição:**
+
+http
+PATCH /users
+Authorization: Required
+Content-Type: application/json
+
 ```
-DELETE /users/{id}
+{
+  "name": "Updated Name",
+  "email": "updated@example.com",
+  "phone": "2121222"
+}
 ```
-// Lista todos os usuários
+
+**Resposta:**
+json
+
 ```
+{
+"id": "user_id",
+"name": "Updated Name",
+"email": "updated@example.com",
+"phone": "2121222",
+"createdAt": DATE,
+}
+```
+
+## Delete User
+
+**Requisição:**
+
+http
+DELETE /users
+Authorization: Required
+
+**Resposta:**
+No response
+
+## List User
+
+**Requisição:**
+
+http
 GET /users
+Authorization: Required
+
+**Resposta:**
+json
+
 ```
-// Lista todos os contatos
+{
+"id": "user_id",
+"name": "John Doe",
+"email": "johndoe@example.com",
+"phone": "2121352653",
+"createdAt": DATE
+},
 ```
-GET /contacts
-```
-// Cria um novo contato
-```
+
+# Contacts
+
+## Create Contact
+
+**Requisição:**
+
+http
 POST /contacts
+Authorization: Required
+Content-Type: application/json
+
+```
 {
-  "name": "John Doe",
-  "email": "johndoe@example.com",
-  "phone": "123-456-7890"
+"name": "Contact Name",
+"email": "contact@example.com",
+"phone": "555-1234"
 }
 ```
 
-// Atualiza um contato existente
+**Resposta:**
+json
+
 ```
-PUT /contacts/{id}
 {
-  "name": "Jane Doe",
-  "email": "janedoe@example.com",
-  "phone": "987-654-3210"
+"id": "contact_id",
+"name": "Contact Name",
+"email": "contact@example.com",
+"phone": "555-1234"
 }
 ```
-// Exclui um contato existente
+
+## Update Contact
+
+**Requisição:**
+
+http
+PATCH /contacts/{id}
+Authorization: Required
+Content-Type: application/json
+
 ```
+{
+"name": "Updated Name",
+"email": "updated@example.com",
+"phone": "555-5678"
+}
+```
+
+**Resposta:**
+json
+
+```
+{
+"id": "contact_id",
+"name": "Updated Name",
+"email": "updated@example.com",
+"phone": "555-5678"
+}
+```
+
+## Delete Contact
+
+**Requisição:**
+
+http
 DELETE /contacts/{id}
+Authorization: Required
+
+**Resposta:**
+No response
+
+## List All Contacts
+
+**Requisição:**
+
+http
+GET /contacts
+Authorization: Required
+
+**Resposta:**
+json
+
 ```
-
-**Autenticação**
-
-A maioria dos endpoints requer autenticação usando um token de autorização. Para autenticar, obtenha um token fazendo uma requisição POST para o endpoint `/login` com credenciais válidas. Inclua o token no cabeçalho `Authorization` para requisições subsequentes a endpoints autenticados.
-
-**Cabeçalhos**
-
-* `Authorization`: O cabeçalho `Authorization` deve conter o token de autorização.
-* `Content-Type`: O cabeçalho `Content-Type` deve ser definido como `application/json` para todas as requisições que enviam dados.
-
-**Status Code**
-
-* `200 OK`: A requisição foi bem-sucedida.
-* `400 Bad Request`: A requisição está errada.
-* `401 Unauthorized`: A requisição não está autenticada.
-* `403 Forbidden`: A requisição não é permitida.
-* `404 Not Found`: O recurso não foi encontrado.
-* `500 Internal Server Error`: Um erro ocorreu no servidor.
-
-**Boa codificação!**
+[
+{
+"id": "contact_id",
+"name": "Contact Name 1",
+"email": "contact1@example.com",
+"phone": "555-1234"
+},
+{
+"id": "contact_id",
+"name": "Contact Name 2",
+"email": "contact2@example.com",
+"phone": "555-5678"
+},
+// ...
+]
+```
