@@ -1,214 +1,94 @@
-# API Documentation
+Claro, aqui está a documentação da API em texto de um README:
 
-**Use yarn command to install all packages.Use yarn typeorm migration:run -d src/data-source.ts to run all migrations. Use yarn dev to run the server.**
+**Documentação da API**
 
-Welcome to the documentation for our API! This document provides an overview of the available endpoints, their functionalities, required parameters, and expected responses.
+Esta API fornece uma maneira de interagir com um banco de dados de usuários e contatos.
 
-## Authentication
+**Endpoints**
 
-Most of the endpoints in this API require authentication using a bearer token. To authenticate, you should obtain a token by making a POST request to the `/login` endpoint with valid credentials. The token should then be included in the `Authorization` header of subsequent requests to authenticated endpoints.
+* Usuários
+    * `GET /users`: Lista todos os usuários.
+    * `POST /users`: Cria um novo usuário.
+    * `PUT /users/{id}`: Atualiza um usuário existente.
+    * `DELETE /users/{id}`: Exclui um usuário existente.
+* Contatos
+    * `GET /contacts`: Lista todos os contatos.
+    * `POST /contacts`: Cria um novo contato.
+    * `PUT /contacts/{id}`: Atualiza um contato existente.
+    * `DELETE /contacts/{id}`: Exclui um contato existente.
 
-# Users
+**Requisições**
 
-## Create User
+Todas as requisições devem ser feitas no formato JSON.
 
-Request:
-POST /users
-Authorization: Required
-Content-Type: application/json
+**Respostas**
+
+Todas as respostas serão retornadas no formato JSON.
+
+**Exemplos**
 
 ```
+// Cria um novo usuário
+POST /users
 {
   "name": "John Doe",
   "email": "johndoe@example.com",
-  "password": "123456",
-  "phone": "2121222"
+  "phone": "123-456-7890"
 }
-```
 
-Response:
-
-json
-
-```
+// Atualiza um usuário existente
+PUT /users/{id}
 {
-"id": "user_id",
-"name": "John Doe",
-"email": "johndoe@example.com"
-"phone": "2121222",
-"createdAt: DATE"
+  "name": "Jane Doe",
+  "email": "janedoe@example.com",
+  "phone": "987-654-3210"
 }
-```
 
-## Update User
+// Exclui um usuário existente
+DELETE /users/{id}
 
-Request:
-
-http
-PATCH /users
-Authorization: Required
-Content-Type: application/json
-
-```
-{
-  "name": "Updated Name",
-  "email": "updated@example.com",
-  "phone": "2121222"
-}
-```
-
-Response:
-
-json
-
-```
-{
-"id": "user_id",
-"name": "Updated Name",
-"email": "updated@example.com",
-"phone": "2121222",
-"createdAt": DATE,
-}
-```
-
-## Delete User
-
-Request:
-
-http
-DELETE /users
-Authorization: Required
-
-Response:
-
-No response
-
-## List User
-
-Request:
-
-http
+// Lista todos os usuários
 GET /users
-Authorization: Required
 
-Response:
-
-json
-
-```
-{
-"id": "user_id",
-"name": "John Doe",
-"email": "johndoe@example.com",
-"phone": "2121352653",
-"createdAt": DATE
-},
-```
-
-# Contacts
-
-## Create Contact
-
-Request:
-
-http
-POST /contacts
-Authorization: Required
-Content-Type: application/json
-
-```
-{
-"name": "Contact Name",
-"email": "contact@example.com",
-"phone": "555-1234"
-}
-```
-
-Response:
-
-json
-
-```
-{
-"id": "contact_id",
-"name": "Contact Name",
-"email": "contact@example.com",
-"phone": "555-1234"
-}
-```
-
-## Update Contact
-
-Request:
-
-http
-PATCH /contacts/{id}
-Authorization: Required
-Content-Type: application/json
-
-```
-{
-"name": "Updated Name",
-"email": "updated@example.com",
-"phone": "555-5678"
-}
-```
-
-Response:
-
-json
-
-```
-{
-"id": "contact_id",
-"name": "Updated Name",
-"email": "updated@example.com",
-"phone": "555-5678"
-}
-```
-
-## Delete Contact
-
-Request:
-
-http
-DELETE /contacts/{id}
-Authorization: Required
-
-Response:
-
-No response
-
-## List All Contacts
-
-Request:
-
-http
+// Lista todos os contatos
 GET /contacts
-Authorization: Required
 
-Response:
-
-json
-
-```
-[
+// Cria um novo contato
+POST /contacts
 {
-"id": "contact_id",
-"name": "Contact Name 1",
-"email": "contact1@example.com",
-"phone": "555-1234"
-},
+  "name": "John Doe",
+  "email": "johndoe@example.com",
+  "phone": "123-456-7890"
+}
+
+// Atualiza um contato existente
+PUT /contacts/{id}
 {
-"id": "contact_id",
-"name": "Contact Name 2",
-"email": "contact2@example.com",
-"phone": "555-5678"
-},
-// ...
-]
+  "name": "Jane Doe",
+  "email": "janedoe@example.com",
+  "phone": "987-654-3210"
+}
+
+// Exclui um contato existente
+DELETE /contacts/{id}
 ```
 
-Please ensure that you include the required Authorization header with a valid bearer token when accessing authenticated endpoints.
+**Autenticação**
 
-Happy coding!
+A maioria dos endpoints requer autenticação usando um token de autorização. Para autenticar, obtenha um token fazendo uma requisição POST para o endpoint `/login` com credenciais válidas. Inclua o token no cabeçalho `Authorization` para requisições subsequentes a endpoints autenticados.
+
+**Cabeçalhos**
+
+* `Authorization`: O cabeçalho `Authorization` deve conter o token de autorização.
+* `Content-Type`: O cabeçalho `Content-Type` deve ser definido como `application/json` para todas as requisições que enviam dados.
+
+**Status Code**
+
+* `200 OK`: A requisição foi bem-sucedida.
+* `400 Bad Request`: A requisição está errada.
+* `401 Unauthorized`: A requisição não está autenticada.
+* `403 Forbidden`: A requisição não é permitida.
+* `404 Not Found`: O recurso não foi encontrado.
+* `500 Internal Server Error`: Um erro ocorreu no servidor.
+
+**Boa codificação!**
