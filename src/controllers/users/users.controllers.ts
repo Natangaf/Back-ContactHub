@@ -14,11 +14,12 @@ const createUserController = async (
   return res.status(201).json(newUser);
 };
 
-const listUserController = async (
+const listUserController = async (req:Request,
   res: Response
 ): Promise<Response<TUserResponse[]>> => {
+  
   const user = await listUserService(res.locals.userId);
-
+  
   return res.status(200).json(user);
 };
 

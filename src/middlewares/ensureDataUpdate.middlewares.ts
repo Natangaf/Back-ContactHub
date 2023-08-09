@@ -29,7 +29,6 @@ const ensureDataUpdate = async (
       return res.status(404).json("Phone already registered!");
     }
   }
-  console.log(email, phone);
   return next();
 };
 

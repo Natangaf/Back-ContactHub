@@ -2,8 +2,28 @@
 
 **Para começar, utilize os seguintes comandos:**
 
-- Instalar todas as dependências: `npm`
+# Configuração e Execução da Aplicação
+
+1. Acesse a pasta "back" dentro do repositório e abra o terminal. Instale as dependências necessárias com o seguinte comando:
+
+
+- Instalar todas as dependências: `npm install `
+
+  se nessesario :`npm install --force`
+
+O parâmetro --force é usado para garantir que todas as dependências sejam instaladas novamente, caso já existam.
+
+2. Crie um arquivo chamado .env na pasta raiz do back e cole o seguinte exemplo de conexão com o banco de dados:
+  Tem um aquivo `.env.example` que vc pode copiar como exemplo 
+    `DATABASE_URL="mysql://root:password@host:port/nome-do-banco"`
+  Certifique-se de mudar o tipo do banco de dados que for utilizar. Substitua os valores root, password, host, port e nome-do-banco pelas informações de conexão do seu banco de dados. Certifique-se de criar o banco de dados antes de executar as migrações.
+
+3. Execute as migrações do banco de dados usando o seguinte comando:
+
 - Executar as migrações: `npm typeorm migration:run -d src/data-source.ts`
+
+4. Após as migrações serem concluídas, execute esse outro comando:
+
 - Iniciar o servidor: `npm run dev`
 
 Bem-vindo à documentação da API! Este guia fornece uma visão geral dos endpoints disponíveis, suas funcionalidades, parâmetros necessários e respostas esperadas.
